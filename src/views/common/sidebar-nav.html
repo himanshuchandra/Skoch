@@ -1,10 +1,12 @@
-<div class="sidebar">
+<div class="sidebar" ng-hide="hideLayout">
   <nav class="sidebar-nav">
     <ul class="nav">
       <li class="nav-item">
         <a class="nav-link" ui-sref-active="active" ui-sref="app.main"><i class="icon-speedometer"></i> Dashboard <span class="badge badge-info">NEW</span></a>
       </li>
-
+      <li class="nav-item">
+        <a class="nav-link" ui-sref-active="active" ui-sref="app.login" ng-href="/#!/login"><i class="icon-speedometer"></i> Login </a>
+      </li>
     </ul>
   </nav>
 </div>

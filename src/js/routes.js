@@ -19,6 +19,7 @@ angular
   .state('app', {
     abstract: true,
     templateUrl: 'views/common/layouts/full.html',
+    controller: 'IndexCtrl',
     //page title goes here
     ncyBreadcrumb: {
       label: 'Root',
@@ -85,39 +86,35 @@ angular
       }]
     }
   })
-  .state('appSimple', {
-    abstract: true,
-    templateUrl: 'views/common/layouts/simple.html',
-    resolve: {
-      loadCSS: ['$ocLazyLoad', function($ocLazyLoad) {
-        // you can lazy load CSS files
-        return $ocLazyLoad.load([{
-          serie: true,
-          name: 'Font Awesome',
-          files: ['node_modules/font-awesome/css/font-awesome.min.css']
-        },{
-          serie: true,
-          name: 'Simple Line Icons',
-          files: ['node_modules/simple-line-icons/css/simple-line-icons.css']
-        }]);
-      }],
-    }
-  })
+  // .state('appSimple', {
+  //   abstract: true,
+  //   templateUrl: 'views/common/layouts/simple.html',
+  //   resolve: {
+  //     loadCSS: ['$ocLazyLoad', function($ocLazyLoad) {
+  //       // you can lazy load CSS files
+  //       return $ocLazyLoad.load([{
+  //         serie: true,
+  //         name: 'Font Awesome',
+  //         files: ['node_modules/font-awesome/css/font-awesome.min.css']
+  //       },{
+  //         serie: true,
+  //         name: 'Simple Line Icons',
+  //         files: ['node_modules/simple-line-icons/css/simple-line-icons.css']
+  //       }]);
+  //     }],
+  //   }
+  // })
 
   // Additional Pages
-  .state('appSimple.login', {
+  .state('app.login', {
     url: '/login',
     templateUrl: 'views/pages/login.html'
   })
-  .state('appSimple.register', {
-    url: '/register',
-    templateUrl: 'views/pages/register.html'
-  })
-  .state('appSimple.404', {
+  .state('app.404', {
     url: '/404',
     templateUrl: 'views/pages/404.html'
   })
-  .state('appSimple.500', {
+  .state('app.500', {
     url: '/500',
     templateUrl: 'views/pages/500.html'
   })

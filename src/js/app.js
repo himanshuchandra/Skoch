@@ -18,6 +18,9 @@ angular
   'ncy-angular-breadcrumb',
   'angular-loading-bar'
 ])
+
+.constant("callurl","https://skoch.tusharsrivastava.com/api")
+
 .config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider) {
   cfpLoadingBarProvider.includeSpinner = false;
   cfpLoadingBarProvider.latencyThreshold = 1;
