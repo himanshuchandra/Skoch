@@ -108,7 +108,23 @@ angular
   // Additional Pages
   .state('app.login', {
     url: '/login',
-    templateUrl: 'views/pages/login.html'
+    templateUrl: 'views/pages/login.html',
+    controller:'LoginCtrl'
+  })
+  .state('app.awards', {
+    url: '/awards',
+    templateUrl: 'views/pages/awards.html',
+    controller:'LoginCtrl'
+  })
+  .state('app.nominations', {
+    url: '/nominations',
+    templateUrl: 'views/pages/nominations.html',
+    controller:'NominationsCtrl'
+  })
+  .state('app.nominee', {
+    url: '/nominee',
+    templateUrl: 'views/pages/nominee.html',
+    controller:'NominationsCtrl'
   })
   .state('app.404', {
     url: '/404',

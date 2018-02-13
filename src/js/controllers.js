@@ -4,6 +4,7 @@ angular.module('app')
   .controller('IndexCtrl', function ($scope, index, $location, $transitions) {
 
     // $scope.message = 'sdcds';
+    $scope.hideLayout = false;
 
     $scope.redirect = function () {
       if ($location.path() === '/login' || $location.path() === '/404' || $location.path() === '/500') {
