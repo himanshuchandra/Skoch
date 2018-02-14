@@ -19,7 +19,7 @@ angular
   'angular-loading-bar'
 ])
 
-.constant("callurl","https://skoch.tusharsrivastava.com/api")
+.constant("callurl","http://localhost:7777")
 
 .config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider) {
   cfpLoadingBarProvider.includeSpinner = false;

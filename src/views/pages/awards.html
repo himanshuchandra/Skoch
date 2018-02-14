@@ -1,0 +1,81 @@
+<h3>
+    All Awards</h3>
+
+<button type="button" class="btn btn-primary" ng-click="refresh()">Refresh</button>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createAwardPop">Create new award</button>
+
+<!-- Modal -->
+<div class="modal fade" id="createAwardPop" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Create New Award</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Award Name :
+                <input type="text" ng-model="awards.newName" /> {{awards.newMsg}}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" ng-click="createAward()">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="editAwardPop" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Edit Award</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                New Name :
+                <input type="text" ng-model="awards.editName" /> {{awards.editMsg}}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" ng-click="saveName()">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- <div ng-repeat="award in awards.allAwards track by $index">
+    <p>{{award._id}}  {{award.name}} {{award.created_on}}  {{award.modified_on}} {{award.is_deleted}} <button ng-click="editAward(award._id)">Edit</button> <button ng-click="deleteAward(award._id)">Delete</button></p>  <br>
+ </div> -->
+<div>
+    <table class="table">
+        <thead class="thead-inverse">
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Created On</th>
+                <th>Modified On</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="award in awards.allAwards track by $index">
+                <!-- <th scope="row">1</th> -->
+                <td>{{award._id}}</td>
+                <td>{{award.name}}</td>
+                <td>{{award.created_on}}</td>
+                <td>{{award.modified_on}}</td>
+                <td>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editAwardPop" ng-click="editAward(award._id,award.name)">EDIT</button>
+                </td>
+                <td>
+                    <button type="button" class="btn btn-danger" ng-click="deleteAward(award._id)">DELETE</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+{{awards.listMsg}}

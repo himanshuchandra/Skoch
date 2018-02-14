@@ -114,7 +114,7 @@ angular
   .state('app.awards', {
     url: '/awards',
     templateUrl: 'views/pages/awards.html',
-    controller:'LoginCtrl'
+    controller:'AwardsCtrl'
   })
   .state('app.nominations', {
     url: '/nominations',

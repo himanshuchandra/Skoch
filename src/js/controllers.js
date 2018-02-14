@@ -57,7 +57,7 @@ angular.module('app')
         console.log(error);
       })
     };
-    $scope.authenticate();
+    // $scope.authenticate();
     $scope.redirect();
     // $scope.$watch(function () { return webindex.needReload }, function (newValue, oldValue) {
     //   if (webindex.needReload === true) {
