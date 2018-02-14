@@ -23,6 +23,17 @@ angular.module('app')
              defer.reject(error);
          })
           return defer.promise;
+      },
+      getNominees:function(id,type){
+        var defer = $q.defer();
+        // $http.get(callurl+'/nominations/' + id + '/' + type)
+        $http.get(callurl+'/nominees')
+        .then(function(data){
+             defer.resolve(data);
+         },function(error){
+             defer.reject(error);
+         })
+          return defer.promise;
       }
 
   };

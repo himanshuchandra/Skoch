@@ -124,7 +124,10 @@ angular
   .state('app.nominee', {
     url: '/nominee',
     templateUrl: 'views/pages/nominee.html',
-    controller:'NominationsCtrl'
+    controller:'NominationsCtrl',
+    params:{
+      id:''
+    }
   })
   .state('app.404', {
     url: '/404',
