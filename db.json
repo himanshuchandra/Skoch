@@ -18,5 +18,12 @@
     "comments": [
       { "id": 1, "body": "some comment", "postId": 1 }
     ],
-    "profile": { "name": "typicode" }
+    "profile": { "name": "typicode" },
+    "activeNomintion":[
+      {"_id": 15496, "name": "hihihih","award_id":1231,"subtype_id":3242,"year_for":2018,"instructions":"<h1>Amazing</h1>","card_image":"https://www.3ders.org/images/slug-traq-3d-printed-test-1.png","gform_link":"hey ther","publish_start_date":"3/4/2014","publish_end_date":"3/4/2014","early_bird_datetime":"3/4/2014",
+      "is_draft":true,"is_archived":false,"created_on":"3/4/2014","modified_on":"3/4/2014","is_deleted":false},
+      {"_id": 15346, "name": "ghjgjhf","award_id":5677,"subtype_id":8969,"year_for":2018,"instructions":"<h1>Fabulous</h1>","card_image":"https://www.3ders.org/images/slug-traq-3d-printed-test-1.png","gform_link":"hey ther","publish_start_date":"3/4/2014","publish_end_date":"3/4/2014","early_bird_datetime":"3/4/2014",
+      "is_draft":true,"is_archived":false,"created_on":"3/4/2014","modified_on":"3/4/2014","is_deleted":false}
+
+    ]
   }
