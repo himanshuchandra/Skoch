@@ -1,0 +1,8 @@
+'use strict';
+
+angular.module('app')
+ .filter('trustAsHtml',['$sce', function($sce) {
+    return function(text) {
+     return $sce.trustAsHtml(text);
+  };
+}]);

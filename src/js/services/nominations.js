@@ -6,7 +6,7 @@ angular.module('app')
 
       fetchActive:function(){
         var defer = $q.defer();
-        $http.get(callurl+'/activeNomintion')
+        $http.get(callurl+'/activeNomination')
         .then(function(data){
              defer.resolve(data);
          },function(error){
@@ -16,7 +16,7 @@ angular.module('app')
       },
       fetchArchived:function(){
         var defer = $q.defer();
-        $http.get(callurl+'/nominationcall/archived')
+        $http.get(callurl+'/archiveNomination')
         .then(function(data){
              defer.resolve(data);
          },function(error){

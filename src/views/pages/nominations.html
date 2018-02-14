@@ -1,18 +1,167 @@
-<div class="container">
-  <h2>Dynamic Tabs</h2>
-  <ul class="nav nav-tabs">
-    <li class="active"><a  data-toggle="tab" onclick="event.preventDefault()" href="#home">Home</a></li>
-    <li><a data-toggle="tab" onclick="event.preventDefault()" href="#menu1">Menu 1</a></li>
-  </ul>
+<h3>Nominations</h3>
 
-  <div class="tab-content">
-    <div id="home" class="tab-pane fade in active">
-      <h3>HOME</h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+<button type="button" class="btn btn-primary" ng-click="refresh()">Refresh</button>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createNominationPop">Create new Nomination</button>
+
+<!-- Modal -->
+<div class="modal fade" id="createNominationPop" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Create New Award</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Award Name :
+                <input type="text" ng-model="awards.newName" /> {{awards.newMsg}}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" ng-click="createAward()">Submit</button>
+            </div>
+        </div>
     </div>
-    <div id="menu1" class="tab-pane fade">
-      <h3>Menu 1</h3>
-      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-    </div>
+</div>
+
+<br><br>
+
+<!--Tabs-->
+<ul class="nav nav-tabs" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link active" data-toggle="tab" data-target="#active" role="tab" ng-click="ActiveNomination()">Activated Nominations</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" data-toggle="tab" data-target="#archive" role="tab" ng-click="getArchivedNominations()">Archived Nominations</a>
+  </li>
+</ul>
+
+<!-- Tab panes -->
+<div class="tab-content">
+  <div class="tab-pane active" id="active" role="tabpanel">
+      <table class="table table-responsive">
+        <thead class="thead-inverse">
+            <tr>
+                <th><input id="active" type="checkbox" ng-click="toggleAll('active')" ng-model="isAllSelected" class="form-check-input">Select</th>
+                <th>Name</th>
+                <th>Award Id</th>
+                <th>Year</th>
+                <th>Instructions</th>
+                <th>Card Image</th>
+                <th>Google Form link</th>
+                <th>Early Bird Date</th>
+                <th colspan="3" style="text-align:center;">Operations</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="active in nominations.active track by $index">
+                <!-- <th scope="row">1</th> -->
+                <td>&nbsp;<input ng-model="active.isSelected" type="checkbox" class="form-check-input"></td>
+                <td>{{active.name}}</td>
+                <td>{{active.award_id}}</td>
+                <td>{{active.year_for}}</td>
+                <td ng-bind-html="active.instructions|trustAsHtml"></td>
+                <td><img ng-src="{{active.card_image}}" style="width:150px;" alt=""></td>
+                <td><a href="{{active.gform_link}}">Register here</a></td>
+                <td>{{active.early_bird_datetime}}</td>
+                <td>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editAwardPop" ng-click="editAward(award._id,award.name)">EDIT</button>
+                </td>
+                <td>
+                    <button type="button" class="btn btn-danger" ng-click="deleteAward(award._id)">DELETE</button>
+                </td>
+                <td>
+                    <button type="button" class="btn btn-primary" ng-click="viewNominee(active._id)">View</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
   </div>
+  <div class="tab-pane" id="archive" role="tabpanel">
+      <table class="table table-responsive">
+        <thead class="thead-inverse">
+            <tr>
+                <th><input id="archive" type="checkbox" ng-click="toggleAll('archive')" ng-model="isAllSelected_arch" class="form-check-input"> Select</th>
+                <th>Name</th>
+                <th>Award Id</th>
+                <th>Year</th>
+                <th>Instructions</th>
+                <th>Card Image</th>
+                <th>Google Form link</th>
+                <th>Early Bird Date</th>
+                <th colspan="3" style="text-align:center;">Operations</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="archive in nominations.archived track by $index">
+                <!-- <th scope="row">1</th> -->
+                <td>&nbsp;<input ng-model="archive.isSelected" type="checkbox" class="form-check-input"></td>
+                <td>{{archive.name}}</td>
+                <td>{{archive.award_id}}</td>
+                <td>{{archive.year_for}}</td>
+                <td ng-bind-html="archive.instructions|trustAsHtml"></td>
+                <td><img ng-src="{{archive.card_image}}" style="width:150px;" alt=""></td>
+                <td><a href="{{archive.gform_link}}">Register here</a></td>
+                <td>{{archive.early_bird_datetime}}</td>
+                <td>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editAwardPop" ng-click="editAward(award._id,award.name)">EDIT</button>
+                </td>
+                <td>
+                    <button type="button" class="btn btn-danger" ng-click="deleteAward(award._id)">DELETE</button>
+                </td>
+                <td>
+                    <button type="button" class="btn btn-primary" ng-click="viewNominee(active._id)">View</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+  </div>
+    
+</div>
+
+<div class="modal fade" id="editAwardPop" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Edit Award</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                New Name :
+                <input type="text" ng-model="awards.editName" /> {{awards.editMsg}}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" ng-click="saveName()">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+<div>
+    <button class="btn btn-primary" data-toggle="modal" data-target="#createGroup" style="float:right;">Create Group</button>
+</div>
+
+<div class="modal fade"  id="createGroup" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Create New Award</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Group Name :
+                <input type="text" ng-model="awards.newName" /> {{group.newMsg}}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" ng-click="createGroup()">Submit</button>
+            </div>
+        </div>
+    </div>
 </div>
