@@ -77,13 +77,39 @@ angular.module('app')
     }
 
 
+    $scope.sortThis =function(array){
+      for (var i = 0;i<array.length;i++){
+        if(array[i].is_approved){
+          array[i].status = 'Approved';
+          array[i].status2 = 'Reject';
+          array[i].status3 = 'Delete';
+        }
+        else if(array[i].is_rejected){
+          array[i].status = 'Rejected';
+          array[i].status2 = 'Approve';
+          array[i].status3 = 'Delete';
+        }
+        else if(array[i].is_deleted){
+          array[i].status = 'Deleted';
+          array[i].status2 = 'Approve';
+          array[i].status3 = 'Reject';
+        }
+        else{
+          array[i].status = 'Approve';
+          array[i].status2 = 'Reject';
+          array[i].status3 = 'Delete';
+        }
+      }
+      return array;
+    }
     $scope.getNominees = function(type){
       $scope.nominees.msg = '';
       var promise = nominations.getNominees($state.params.id,type);
       promise.then(function (data) {
         console.log(data);
         if(data.status === 'success' || data.status === 200){
-          $scope.nominees.allNominees = data.data;
+          var array = $scope.sortThis(data.data);
+          $scope.nominees.allNominees = array;
         }
         else{
           $scope.nominees.msg = 'Error loading nominees!';
@@ -94,6 +120,30 @@ angular.module('app')
           $scope.nominees.msg = 'Error loading nominees!';
         })
     };
+
+    $scope.changeStatus = function(action,i){
+      var obj=$scope.nominees.allNominees[i];
+      switch(action){
+        case 'Approve':obj.is_approved = true;break;
+        case 'Reject':obj.is_rejected = true;break;
+        case 'Delete':obj.is_deleted = true;break;
+      }
+      var promise = nominations.changeStatus($state.params.id,obj);
+      promise.then(function (data) {
+        console.log(data);
+        if(data.status === 'success' || data.status === 200){
+          var array = $scope.sortThis([data.data]);          
+          $scope.nominees.allNominees[i] = array[0];
+        }
+        else{
+          // $scope.nominees.msg = 'Error loading nominees!';
+        }
+        
+      }
+        , function (error) {
+          // $scope.nominees.msg = 'Error loading nominees!';
+        })
+    };
     
 
     $scope.viewNominee = function(id){
@@ -102,7 +152,10 @@ angular.module('app')
 
     if($state.current.url==='/nominee'){
       if($state.params.id){
-        $scope.getNominees();
+        $scope.getNominees('submitted');
+      }
+      else{
+        $state.transitionTo('app.nominations');
       }
     }
     else{

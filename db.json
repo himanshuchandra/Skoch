@@ -30,5 +30,17 @@
       "is_draft":true,"is_archived":false,"created_on":"3/4/2014","modified_on":"3/4/2014","is_deleted":false},
       {"_id": 15346, "name": "lalal","award_id":5677,"subtype_id":8969,"year_for":2018,"instructions":"<h1>Fabulous</h1>","card_image":"https://www.3ders.org/images/slug-traq-3d-printed-test-1.png","gform_link":"hey ther","publish_start_date":"3/4/2014","publish_end_date":"3/4/2014","early_bird_datetime":"3/4/2014",
       "is_draft":true,"is_archived":false,"created_on":"3/4/2014","modified_on":"3/4/2014","is_deleted":false}
-    ]
+    ],
+    "nominees":[{
+      "_id":8989, "nominationcall_id":9999, "nominee_id":4355, "gform_data":{"name":"dsffff"} , "submitted_on": "2/3/2018", "modified_on":"2/3/2018", "is_approved":true, "is_rejected":false, "approval_mail_status":true, "is_deleted": false
+    },
+    {
+      "_id":3443, "nominationcall_id":9999, "nominee_id":4355, "gform_data":{"name":"sdvfdv"} , "submitted_on": "2/3/2018", "modified_on":"2/3/2018", "is_approved":false, "is_rejected":true, "approval_mail_status":true, "is_deleted": false
+    },
+    {
+      "_id":3232, "nominationcall_id":9999, "nominee_id":4355, "gform_data":{"name":"ddsvdsv"} , "submitted_on": "2/3/2018", "modified_on":"2/3/2018", "is_approved":false, "is_rejected":false, "approval_mail_status":true, "is_deleted": true
+    }],
+    "newnominee":{
+      "_id":3232, "nominationcall_id":9999, "nominee_id":4355, "gform_data":{"name":"ddsvdsv"} , "submitted_on": "2/3/2018", "modified_on":"2/3/2018", "is_approved":true, "is_rejected":false, "approval_mail_status":true, "is_deleted": false
+    }
   }

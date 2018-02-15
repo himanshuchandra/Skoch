@@ -1,0 +1,33 @@
+<div>
+    <table class="table">
+        <thead class="thead-inverse">
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Modified On</th>
+                <th>Submitted On</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="nominee in nominees.allNominees track by $index">
+                <!-- <th scope="row">1</th> -->
+                <td>{{nominee._id}}</td>
+                <td>{{nominee.gform_data.name}}</td>
+                <td>{{nominee.modified_on}}</td>
+                <td>{{nominee.submitted_on}}</td>
+                <td><div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          {{nominee.status}}
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                          <a class="dropdown-item" href="#" ng-click="changeStatus(nominee.status2,$index)">{{nominee.status2}}</a>
+                          <a class="dropdown-item" href="#" ng-click="changeStatus(nominee.status3,$index)">{{nominee.status3}}</a>
+                        </div>
+                      </div>
+                </td> 
+            </tr>
+        </tbody>
+    </table>
+</div>
+{{awards.listMsg}}
